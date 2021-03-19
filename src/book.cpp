@@ -24,6 +24,11 @@ Book::Book(const std::string &title,
   }
 
   // Tip 1: остались слезы на щеках, осталось лишь инициализировать поля ...
+  title_ = title;
+  content_ = content;
+  genre_ = genre;
+  publisher_ = publisher;
+  authors_ = authors;
 }
 
 // 2. реализуйте метод ...
