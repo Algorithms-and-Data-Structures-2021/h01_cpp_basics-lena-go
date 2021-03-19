@@ -18,7 +18,7 @@ ResizeStorageStatus resize_storage(Book *&storage, int size, int new_capacity) {
       return ResizeStorageStatus::NEGATIVE_SIZE;
   }
   Book *new_storage = new Book[new_capacity]{};
-  std::copy(storage, storage + size, new_capacity);
+  std::copy(storage, storage + size, new_storage);
   delete[] storage;
   storage = new_storage;
   return ResizeStorageStatus::SUCCESS;
@@ -35,7 +35,7 @@ BookStore::BookStore(const std::string &name) : name_{name} {
 
   name_ = name;
   storage_capacity_ = kInitStorageCapacity;
-  Book *storage_ = new Book[kInitStorageCapacity]{};
+  storage_ = new Book[kInitStorageCapacity]{};
 }
 
 // 3. реализуйте деструктор ...
@@ -55,7 +55,7 @@ void BookStore::AddBook(const Book &book) {
     // здесь мог бы быть ваш умопомрачительный код ...
     // Tip 1: используйте функцию resize_storage_internal, задав новый размер хранилища
     // Tip 2: не забудьте обработать статус вызова функции
-  result = resize_storage_internal(kCapacityCoefficient);
+    result = resize_storage_internal(storage_capacity_ + kCapacityCoefficient);
   }
   // Tip 3: не забудьте добавить книгу в наше бездонное хранилище ...
   if (result == ResizeStorageStatus::SUCCESS){
