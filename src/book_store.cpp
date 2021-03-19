@@ -32,6 +32,10 @@ BookStore::BookStore(const std::string &name) : name_{name} {
   }
 
   // здесь мог бы быть ваш сотрясающий землю и выделяющий память код ...
+
+  name_ = name;
+  storage_capacity_ = kInitStorageCapacity;
+  Book *storage = new Book[kInitStorageCapacity]{};
 }
 
 // 3. реализуйте деструктор ...
