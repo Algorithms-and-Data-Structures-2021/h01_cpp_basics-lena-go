@@ -35,7 +35,13 @@ Book::Book(const std::string &title,
 bool Book::AddAuthor(const Author &author) {
   // здесь мог бы быть ваш сногсшибающий код ...
   // Tip 1: для поиска дубликатов можно использовать цикл for-each
-  return false;
+  for (auto &a: authors_){
+      if (a == author){
+          return false;
+      }
+  }
+  authors_.push_back(author);
+  return true;
 }
 
 // РЕАЛИЗОВАНО
