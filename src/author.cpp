@@ -8,11 +8,18 @@ Author::Author(const std::string &full_name, int age, Sex sex) {
   if (age < kMinAuthorAge) {
     throw std::invalid_argument("Author::age must be greater than " + std::to_string(kMinAuthorAge));
   }
+  else {
+      age_ = age;
+  }
 
   if (full_name.empty()) {
     throw std::invalid_argument("Author::full_name must not be empty");
   }
+  else {
+      full_name_ = full_name;
+  }
   // Tip 1: инициализируйте поля
+  sex_ = sex;
 }
 
 void Author::SetAge(int age) {
