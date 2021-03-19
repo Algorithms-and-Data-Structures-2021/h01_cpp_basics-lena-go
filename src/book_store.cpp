@@ -8,6 +8,19 @@ ResizeStorageStatus resize_storage(Book *&storage, int size, int new_capacity) {
   // здесь мог бы быть ваш разносторонний и многогранный код ...
   // Tip 1: проведите валидацию аргументов функции
   // Tip 2: не забудьте высвободить ранее выделенную память под хранилище
+  if (!storage){
+      return ResizeStorageStatus::NULL_STORAGE;
+  }
+  if (new_capacity <= size){
+      return ResizeStorageStatus::INSUFFICIENT_CAPACITY;
+  }
+  if (size < 0){
+      return ResizeStorageStatus::NEGATIVE_SIZE;
+  }
+  Book *new_storage = new Book[new_capacity]{};
+  std::copy(storage, storage + size, new_capacity);
+  delete[] storage;
+  storage = new_storage;
   return ResizeStorageStatus::SUCCESS;
 }
 
