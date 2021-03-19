@@ -35,7 +35,7 @@ BookStore::BookStore(const std::string &name) : name_{name} {
 
   name_ = name;
   storage_capacity_ = kInitStorageCapacity;
-  Book *storage = new Book[kInitStorageCapacity]{};
+  Book *storage_ = new Book[kInitStorageCapacity]{};
 }
 
 // 3. реализуйте деструктор ...
@@ -50,12 +50,18 @@ BookStore::~BookStore() {
 
 // 4. реализуйте метод ...
 void BookStore::AddBook(const Book &book) {
+    ResizeStorageStatus result = ResizeStorageStatus::SUCCESS;
   if (storage_size_ == storage_capacity_) {
     // здесь мог бы быть ваш умопомрачительный код ...
     // Tip 1: используйте функцию resize_storage_internal, задав новый размер хранилища
     // Tip 2: не забудьте обработать статус вызова функции
+  result = resize_storage_internal(kCapacityCoefficient);
   }
   // Tip 3: не забудьте добавить книгу в наше бездонное хранилище ...
+  if (result == ResizeStorageStatus::SUCCESS){
+      storage_[storage_size_] = book;
+      storage_size_ += 1;
+  }
 }
 
 // РЕАЛИЗОВАНО
